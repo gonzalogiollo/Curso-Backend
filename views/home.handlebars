@@ -1,0 +1,82 @@
+{{!-- <div class="products-container">
+  <section>
+    <h1>Librería técnica</h1>
+    <a href="/api/users/logout"><button>Cerrar Sesion</button></a>
+    <a href="/profile"><button>Profile</button></a>
+	</section>
+	<h2>¡Bienvenido {{user.first_name}}! {{user.email}}</h2>
+</div>
+
+<script src="/js/cart.js"></script> --}}
+
+<div class="products-container">
+  <div>
+     <h1>Libreria tecnica </h1>
+        <a href="/api/users/logout"><button>Cerrar Sesion</button></a>
+        <a href="/profile"><button>Profile</button></a>
+  </div>
+  <p>¡Bienvenido {{user.first_name}}! {{user.email}}</p>
+
+<h2>Productos</h2>
+
+<form action="/home" method="get">
+  <label for="category">Categoría:</label>
+  <select name="category" id="category">
+    <option value="">Todas</option>
+    <option value="">Todos</option>
+    <option value="sketch">sketch</option>
+    <option value="tecnico">tecnico</option>
+    <option value="dibujo-tecnico">dibujo tecnico</option>
+  </select>
+  <button type="submit">Filtrar</button>
+</form>
+
+<form action="/home" method="get">
+  <label for="sort">Ordenar por precio:</label>
+  <select name="sort" id="sort">
+    <option value="">Ninguno</option>
+    <option value="asc" {{#if currentSort}}selected{{/if}}>Ascendente</option>
+    <option value="desc" {{#if currentSort}}selected{{/if}}>Descendente</option>
+  </select>
+  <button type="submit">Ordenar</button>
+</form>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Título</th>
+    <th>Descripción</th>
+    <th>Precio</th>
+    <th>Código</th>
+    <th>Stock</th>
+    <th>Categoría</th>
+  </tr>
+  <tbody>
+    {{#each productsList}}
+      <tr>
+        <td>{{this._id}}</td>
+        <td>{{this.title}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.price}}</td>
+        <td>{{this.code}}</td>
+        <td>{{this.stock}}</td>
+        <td>{{this.category}}</td>
+        <td><button onclick="addToCart('{{this._id}}')">Agregar al Carrito</button></td>
+      </tr>
+    {{/each}}
+    <a class="link-item" href="/carts/{{user.carts.last}}"><button>Carrito</button></a>
+
+    {{#if hasPrevPage}}
+      <a href="/home/?category={{category}}&sort={{currentSort}}&page={{prevPage}}"><button>Anterior</button></a>
+    {{/if}}
+    {{#if hasNextPage}}
+      <a href="/home/?category={{category}}&sort={{currentSort}}&page={{nextPage}}"><button>Siguiente</button></a>
+    {{/if}}
+  </tbody>
+</table>
+  </section>
+
+</div>
+
+
+<script src="/js/cart.js"></script>

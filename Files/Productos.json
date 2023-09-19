@@ -1,0 +1,175 @@
+[
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 7b",
+		"price": 450,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 1,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 7b",
+		"price": 450,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 2,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 6b",
+		"price": 400,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 3,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 5b",
+		"price": 350,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 4,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 4b",
+		"price": 300,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": "5",
+		"stock": "100",
+		"status": "OK",
+		"category": "sketch"
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 3b",
+		"price": 250,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 6,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 2b",
+		"price": 200,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 7,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph b",
+		"price": 150,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 8,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph h",
+		"price": 450,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 9,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph hb",
+		"price": 450,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 10,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 2h",
+		"price": 450,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 11,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 3h",
+		"price": 450,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 12,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 4h",
+		"price": 450,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 13,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	},
+	{
+		"title": "lapiz",
+		"description": "staedler lumograph 5h",
+		"price": 450,
+		"thumbnail": "/img/staedler lumograph.png",
+		"code": 14,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	},
+	{
+		"title": "goma lapiz",
+		"description": "goma para lapiz",
+		"price": 450,
+		"thumbnail": "/img/staedler.png",
+		"code": 15,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	},
+	{
+		"title": "goma bi componente",
+		"description": "goma para lapiz y tinta",
+		"price": 120,
+		"thumbnail": "/img/staedler.png",
+		"code": 16,
+		"stock": 100,
+		"status": "OK",
+		"category": "sketch"
+			
+	}
+
+	
+	
+
+]

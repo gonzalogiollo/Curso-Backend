@@ -1,0 +1,14 @@
+<div><h1>My cart</h1>
+  <a href="/home"><button>Home</button></a>
+  {{#if (compare products.length '>' 0)}}
+
+    <h2>Products</h2>
+
+    {{#each products}}
+      <div>
+        <b><p>{{this.product.title}}</p></b>
+      </div>
+    {{/each}}
+</div>
+
+<script src='/js/cart.js'></script>

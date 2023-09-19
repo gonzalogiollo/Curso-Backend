@@ -1,0 +1,225 @@
+paths:
+  /api/products:
+    post:
+      summary: Crear un producto nuevo
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/addProducts"
+      responses:
+        "200":
+          description: Producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getProducts"
+        "400":
+          description: Producto inválido
+    get:
+      summary: Mostrar todos los productos
+      tags:
+        - Products
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: paginado
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: items por página
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: ordenar por campo
+      responses:
+        "200":
+          description: Lista de todos los productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/getProducts"
+        "400":
+          description: parámetros incorrectos
+  /api/products/{pid}:
+    get:
+      summary: Trae producto por su id
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: pid
+          schema:
+            type: String
+          required: true
+          description: Product id
+      responses:
+        "200":
+          description: Producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getProducts"
+        "400":
+          description: parámetros incorrectos
+    put:
+      sumary: Actualizar producto por id
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: pid
+          schema:
+            type: String
+          required: true
+          description: Product id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/updateProduct"
+      responses:
+        "200":
+          description: Producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateProducts"
+        "400":
+          description: parámetros incorrectos
+    delete:
+      summary: Borrar producto por id
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: pid
+          schema:
+            type: String
+          required: true
+          description: Product id
+      responses:
+        "200":
+          description: Producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteProducts"
+        "400":
+          description: parámetros incorrectos
+
+
+components:
+  schemas:
+    getProducts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Auto generated mongo id
+        title:
+          type: string
+          description: Product title
+        description:
+          type: string
+          description: Product description
+        price:
+          type: number
+          description: Product price
+        thumbnail:
+          type: string
+          description: Product thumbnail
+        code:
+          type: string
+          description: Product code
+        stock:
+          type: number
+          description: Product stock
+        status:
+          type: string
+          description: Product status
+        category:
+          type: string
+          description: Product category
+        owner:
+          type: string
+          description: Product owner / Default - admin
+      example:
+        _id: 646aaa4ebd182f89052c446b
+        title: "Product title"
+        description: "Product description"
+        price: 100
+        thumbnail: "/img/staedler lumograph.png"
+        code: 1
+        stock: 100
+        status: "active"
+        category: "category"
+        owner: "admin"
+
+    updateProducts:
+      type: object
+      example:
+        status: success
+        message: "Producto actualizado"
+        payload:
+          acknowledged: true
+          modifiedCount: 1
+          upsertedId: null
+          upsertedCount: 0
+          matchedCount: 1
+
+    deleteProducts:
+      type: object
+      example:
+        status: success
+        message: "Producto eliminado"
+        payload:
+          acknowledged: true
+          deletedCount: 1
+  requestBodies:
+    updateProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Product title
+        description:
+          type: string
+          description: Product description
+        price:
+          type: number
+          description: Product price
+        thumbnail:
+          type: string
+          description: Product thumbnail
+        code:
+          type: string
+          description: Product code
+        stock:
+          type: number
+          description: Product stock
+        status:
+          type: string
+          description: Product status
+        category:
+          type: string
+          description: Product category
+      example:
+        title: "Product title"
+        description: "Product description"
+        price: 100
+        thumbnail: "/img/staedler lumograph.png"
+        code: 1
+        stock: 100
+        status: "active"
+        category: "category"

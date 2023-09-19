@@ -1,0 +1,366 @@
+paths:
+  /api/carts:
+    get:
+      summary: Trae todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Todos los carritos cargados exitosamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/getCarts"
+        "400":
+          description: Bad request.  
+    post:
+      summary: Crea un carrito vacío
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Carrito creado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/addCart"
+        "400":
+          description: Bad request.
+
+  /api/carts/{cid}:
+    get:
+      sumamry: Trae un carrito por su ID
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Carrito encontrado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCarts"
+        "400":
+          description: Error en validación
+    put:
+      summary: Actualizar carrito por su id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      requestBody:
+        description: Carrito que se desea actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/updateCartProductsBody"
+      responses:
+        "200":
+          description: Carrito actualizado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCartProducts"
+        "400":
+          description: Error en validación
+    delete:
+      summary: Borrar carrito por su ID
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Carrito borrado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteCart"
+        "400":
+          description: Error en validación
+
+  /api/carts/{cid}/products/{pid}:
+    post:
+      summary: Agregar producto al carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto agregado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/addProductToCart"
+        "400":
+          description: Error en validación
+    put:
+      summary: Actualizar producto de un carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      requestBody:
+        description: producto del carrito para actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/updateCartProduct"
+      responses:
+        "200":
+          description: Producto actualizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCart"
+        "400":
+          description: Error en validación
+    delete:
+      summary: Borrar producto del carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto eliminado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteCartProduct"
+        "400":
+          description: Error en validación
+
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Checkout del carrito y compra
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+      responses:
+        "200":
+          description: Compra exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchaseCart"
+        "400":
+          description: Error en validación
+
+components:
+  schemas:
+    addCart:
+      type: object
+      example:
+        status: 200
+        message: Carrito creado exitosamente.
+        payload:
+          products: []
+          _id: 646ce5b473b52b959314f4b9
+          __v: 0
+
+    addProductToCart:
+      type: object
+      example:
+        status: 200
+        message: Product added to cart successfully.
+        payload:
+          products:
+            _id: 646aaa4ebd182f89052c446b
+            title: lapiz
+            description: staedler lumograph 7b
+            category: lapices
+            price: 450
+            thumbnail: "/img/staedler lumograph.png"
+            code: 1
+            stock: 100
+            __v: 0
+          quantity: 1
+          _id: 646ce5b473b52b959314f4b9
+          __v: 0
+
+    getCarts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Auto-generated mongodb id
+          objects:
+            tyope: object
+            description: Product object
+            products:
+              type: ObjectId
+              description: Auto-generated mongodb id
+            quantity:
+              type: number
+              description: Quantity of product in cart
+            _id:
+              type: ObjectId
+              description: Auto-generated mongodb id
+      example:
+        status: 200
+        message: "Carrito encontrado"
+        payload:
+          product:
+            _id: 646aaa4ebd182f89052c446b
+            title: lapiz
+            description: staedler luminograph 7b
+            category: lapices
+            price: 450
+            thumbnail:  "/img/staedler lumograph.png"
+            code: 1
+            stock: 100
+            __v: 0
+          quantity: 1
+          _id: 646ce5b473b52b959314f4b9
+
+    updateCart:
+      type: object
+      example:
+        status: 200
+        message: Producto actualizado
+        payload:
+          acknowledged: true
+          modifiedCount: 1
+          upsertedId: null
+          upsertedCount: 0
+          matchedCount: 1
+
+    updateCartProducts:
+      type: object
+      example:
+        status: 200
+        message: Producto actualizado
+        payload:
+          acknowledged: true
+          modifiedCount: 1
+          upsertedId: null
+          upsertedCount: 0
+          matchedCount: 1
+
+    deleteCart:
+      type: object
+      example:
+        status: 200
+        message: Carrito borrado correctamente
+        payload:
+          acknowledged: true
+          deletedCount: 1
+
+    deleteCartProduct:
+      type: object
+      example:
+        status: 200
+        message: Producto eliminado exitosamente
+        payload:
+          acknowledged: true
+          modifiedCount: 1
+          upsertedId: null
+          upsertedCount: 0
+          matchedCount: 1
+
+    purchaseCart:
+      type: object
+      example:
+        status: 200
+        message: Compra exitosa
+        payload:
+          acknowledged: true
+          deletedCount: 1
+
+  requestBodies:
+    updateCartProduct:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              quantity:
+                type: number
+                description: Quantity of product in cart
+              _id:
+                type: ObjectId
+                description: Auto-generated mongodb id
+            example:
+              quantity: 1
+              _id: 646aaa4ebd182f89052c446b
+    updateCartProductsBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              products:
+                type: array
+                description: Array de productos
+                items:
+                  type: object
+                  properties:
+                    quantity:
+                      type: number
+                      description: Cantidad de productos
+                    _id:
+                      type: ObjectId
+                      description: Auto-generated mongodb id
+            example:
+              products:
+                - quantity: 1
+                  _id: 646aaa4ebd182f89052c446b
