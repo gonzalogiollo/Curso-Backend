@@ -10,9 +10,14 @@ import {
   resetEmailUser,
   updateUserRole,
   updateUserDocument,
+  getUsers,
+  updateUser,
+  getUser,
+  deleteUser,
+  deleteInactiveUsers,
 } from '../controllers/usersController.js';
 
-import { PUBLIC_ACCESS, PRIVATE_ACCESS } from '../config/access.js';
+import { PUBLIC_ACCESS, PRIVATE_ACCESS, PREMIUM_ACCESS } from '../config/access.js';
 import { uploader } from '../utils.js';	
 import Users from '../dao/dbManagers/usersManager.js';
 import { passportStrategiesEnum } from '../config/enums.js';
@@ -84,6 +89,30 @@ export default class UsersRouter extends Router {
       PUBLIC_ACCESS,	
       passportStrategiesEnum.JWT,	
       updateUserRole	
-    );	
+    );
+    this.get(
+      '/',
+      PRIVATE_ACCESS,
+      passportStrategiesEnum.JWT,
+      getUsers
+    );
+    this.put(
+      '/:uid',
+      PRIVATE_ACCESS,
+      passportStrategiesEnum.JWT,
+      updateUser
+    );
+    this.get(
+      '/:uid',
+      PRIVATE_ACCESS,
+      passportStrategiesEnum.JWT,
+      getUser
+    );
+    this.delete(
+      '/',
+      PRIVATE_ACCESS,
+      passportStrategiesEnum.JWT,
+      deleteInactiveUsers
+    );
   }
 }

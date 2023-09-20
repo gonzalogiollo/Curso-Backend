@@ -20,7 +20,7 @@ const createUser = async (user) => {
 
 const updateUser = async (email, user) => {	
   const result = await USERSDAO.updateOne(email, user);	
-  return result;	
+  return result;
 };
 
 const updateUserRole = async (id, role) => {	
@@ -58,4 +58,14 @@ const deleteInactiveUsers = async () => {
   return true;
 };
 
-export { getUsers, createUser, getByEmail, updateUser, updateUserRole, updateUserDocument, deleteInactiveUsers, updateLastConnection };
+const getUser = async (id) => {
+  const user = await USERSDAO.getById(id);
+  return user;
+};
+
+const deleteUser = async (id) => {
+  const user = await USERSDAO.deleteOne(id);
+  return user;
+};
+
+export { getUsers, createUser, getByEmail, updateUser, updateUserRole, updateUserDocument, deleteInactiveUsers, updateLastConnection, getUser, deleteUser };

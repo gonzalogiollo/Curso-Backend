@@ -6,6 +6,9 @@ import {
   updateUser as updateUserService,
   updateUserDocument as updateUserDocumentService,	
   updateUserRole as updateUserRoleService,
+  getUser as getUserService,
+  deleteUser as deleteUserService,
+ 
 } from '../services/usersService.js';
 import { createHash, generateToken, isValidPassword } from '../utils.js';
 import { getLogger } from '../utils/logger.js';
@@ -160,7 +163,6 @@ const resetEmailUser = async (req, res) => {
   }
 };
 
-
 const handleUpdate = async (res, updateFunction, successMessage) => {
   try {
     const result = await updateFunction();
@@ -194,4 +196,24 @@ const updateUserDocument = async (req, res) => {
   );
 };
 
-export { getUsers, loginUser, registerUser, logoutUser, githubUser, githubCallbackUser, resetEmailUser, resetUser, updateUserRole, updateUserDocument };
+const getUser = async(req,res)=> {
+  const users = await getUserService();
+  res.send(users);
+}
+
+const updateUser =async(req,res)=>{
+  const user = await updateUserService();
+  res.send(user);
+}
+
+const deleteUser = async(req,res) =>{
+  const user = await deleteUserService();
+  res.send({status:"success",message:"User deleted"})
+}
+
+const deleteInactiveUsers = async(req,res) =>{
+  const users = await deleteInactiveUsersService();
+  res.send({status:"success",message:"Inactive users deleted"})
+}
+
+export { getUsers, loginUser, registerUser, logoutUser, githubUser, githubCallbackUser, resetEmailUser, resetUser, updateUserRole, updateUserDocument, getUser, updateUser, deleteUser, deleteInactiveUsers };
